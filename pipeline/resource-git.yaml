@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: my-first-app-git
+  namespace: tekton-pipelines
+  labels:
+    app: my-first-app
+spec:
+  type: git
+  params:
+  - name: revision
+    value: master
+  - name: url
+    value: https://github.com/xavi06/my-first-app.git

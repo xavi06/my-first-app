@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1alpha1
+kind: TaskRun
+metadata:
+  name: my-first-app-task-run
+  namespace: tekton-pipelines
+  labels:
+    app: my-first-app
+spec:
+  serviceAccount: tekton-git-and-docker-admin
+  taskRef:
+    name: my-first-app-task
+  inputs:
+    resources:
+    - name: app
+      resourceref:
+        name: my-first-app-git
+    params:
+    - name: pathToDockerFile
+      value: Dockerfile
+    - name: pathToContext
+      value: /workspace/app
